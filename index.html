@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="珍惜（香港）有限公司 - 專業旅遊接送服務，機場接送、口岸接送、深圳市區接送">
+<title>珍惜（香港）有限公司 | Cherish Hong Kong Limited</title>
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #e0c068;
+    --dark: #1a1a1a;
+    --dark2: #242424;
+    --dark3: #2e2e2e;
+    --text: #f0f0f0;
+    --text-dim: #aaa;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--dark); color:var(--text); font-family:'Segoe UI',Arial,sans-serif; }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; width:100%; background:rgba(26,26,26,0.97);
+    border-bottom:1px solid var(--gold); z-index:1000; padding:0 20px;
+    display:flex; align-items:center; justify-content:space-between; height:60px;
+  }
+  .logo { color:var(--gold); font-size:1.1rem; font-weight:700; }
+  .logo span { color:var(--text); font-size:0.75rem; display:block; }
+  .nav-links { display:flex; gap:20px; list-style:none; }
+  .nav-links a { color:var(--text-dim); text-decoration:none; font-size:0.9rem; transition:.3s; }
+  .nav-links a:hover { color:var(--gold); }
+  .lang-btn {
+    background:var(--gold); color:var(--dark); border:none; padding:5px 14px;
+    border-radius:20px; cursor:pointer; font-weight:700; font-size:0.85rem;
+  }
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+  .hamburger span { width:24px; height:2px; background:var(--gold); }
+  .mobile-menu {
+    display:none; position:fixed; top:60px; left:0; width:100%; background:var(--dark2);
+    padding:20px; z-index:999; border-bottom:1px solid var(--gold);
+  }
+  .mobile-menu a { display:block; color:var(--text); padding:12px 0; border-bottom:1px solid var(--dark3); text-decoration:none; }
+
+  /* HERO */
+  .hero {
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
+    text-align:center; padding:80px 20px 40px;
+  }
+  .hero-content { max-width:700px; }
+  .hero-badge {
+    display:inline-block; background:var(--gold); color:var(--dark);
+    padding:6px 18px; border-radius:20px; font-size:0.8rem; font-weight:700;
+    margin-bottom:20px; letter-spacing:1px;
+  }
+  .hero h1 { font-size:2.5rem; color:var(--gold); line-height:1.2; margin-bottom:10px; }
+  .hero h2 { font-size:1.1rem; color:var(--text-dim); margin-bottom:20px; }
+  .hero p { font-size:1rem; color:var(--text); margin-bottom:30px; line-height:1.7; }
+  .hero-btns { display:flex; gap:15px; justify-content:center; flex-wrap:wrap; }
+  .btn-gold {
+    background:var(--gold); color:var(--dark); padding:14px 30px;
+    border-radius:30px; font-weight:700; text-decoration:none; font-size:1rem;
+    transition:.3s; border:none; cursor:pointer;
+  }
+  .btn-gold:hover { background:var(--gold-light); transform:translateY(-2px); }
+  .btn-outline {
+    border:2px solid var(--gold); color:var(--gold); padding:12px 30px;
+    border-radius:30px; font-weight:700; text-decoration:none; font-size:1rem;
+    transition:.3s; background:transparent; cursor:pointer;
+  }
+  .btn-outline:hover { background:var(--gold); color:var(--dark); }
+
+  /* SECTIONS */
+  section { padding:70px 20px; }
+  .section-title { text-align:center; margin-bottom:50px; }
+  .section-title h2 { font-size:1.9rem; color:var(--gold); margin-bottom:8px; }
+  .section-title p { color:var(--text-dim); }
+  .gold-line { width:60px; height:3px; background:var(--gold); margin:12px auto; border-radius:2px; }
+
+  /* SERVICES */
+  .services { background:var(--dark2); }
+  .service-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; max-width:1000px; margin:0 auto; }
+  .service-card {
+    background:var(--dark3); border:1px solid #333; border-radius:12px;
+    padding:30px; transition:.3s; position:relative; overflow:hidden;
+  }
+  .service-card:hover { border-color:var(--gold); transform:translateY(-5px); }
+  .service-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:var(--gold);
+  }
+  .service-icon { font-size:2.5rem; margin-bottom:15px; }
+  .service-card h3 { color:var(--gold); font-size:1.2rem; margin-bottom:8px; }
+  .service-card .en { color:var(--text-dim); font-size:0.85rem; margin-bottom:12px; }
+  .service-card p { color:var(--text); font-size:0.9rem; line-height:1.6; }
+  .service-tag {
+    display:inline-block; background:rgba(201,168,76,0.15); color:var(--gold);
+    border:1px solid var(--gold); padding:3px 10px; border-radius:10px;
+    font-size:0.75rem; margin-top:10px;
+  }
+
+  /* FLEET */
+  .fleet { background:var(--dark); }
+  .fleet-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; max-width:900px; margin:0 auto; }
+  .fleet-item {
+    background:var(--dark2); border:1px solid #333; border-radius:10px;
+    padding:25px; text-align:center; transition:.3s;
+  }
+  .fleet-item:hover { border-color:var(--gold); }
+  .fleet-item .icon { font-size:2rem; margin-bottom:10px; }
+  .fleet-item h4 { color:var(--gold); margin-bottom:5px; }
+  .fleet-item p { color:var(--text-dim); font-size:0.85rem; }
+  .fleet-badge {
+    display:inline-block; background:var(--gold); color:var(--dark);
+    padding:8px 20px; border-radius:20px; font-weight:700; font-size:0.9rem;
+    margin:0 auto 30px; display:block; width:fit-content;
+  }
+
+  /* CALCULATOR */
+  .calculator { background:var(--dark2); }
+  .calc-box { max-width:700px; margin:0 auto; background:var(--dark3); border-radius:15px; padding:35px; border:1px solid #333; }
+  .form-group { margin-bottom:20px; }
+  .form-group label { display:block; color:var(--gold); font-size:0.9rem; margin-bottom:8px; font-weight:600; }
+  .form-group input, .form-group select, .form-group textarea {
+    width:100%; background:var(--dark2); border:1px solid #444; color:var(--text);
+    padding:12px 15px; border-radius:8px; font-size:0.95rem; transition:.3s;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color:var(--gold); outline:none;
+  }
+  .quick-btns { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+  .quick-btn {
+    background:rgba(201,168,76,0.1); border:1px solid var(--gold); color:var(--gold);
+    padding:5px 12px; border-radius:15px; font-size:0.8rem; cursor:pointer; transition:.3s;
+  }
+  .quick-btn:hover { background:var(--gold); color:var(--dark); }
+  .shenzhen-field { display:none; margin-top:15px; }
+  .result-box {
+    background:var(--dark); border:2px solid var(--gold); border-radius:10px;
+    padding:25px; margin-top:20px; display:none;
+  }
+  .result-box h3 { color:var(--gold); margin-bottom:15px; font-size:1.1rem; }
+  .result-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #333; font-size:0.9rem; }
+  .result-row:last-child { border-bottom:none; font-weight:700; color:var(--gold); font-size:1.1rem; }
+  .calc-btn { width:100%; margin-top:20px; padding:15px; font-size:1rem; }
+
+  /* BOOKING */
+  .booking { background:var(--dark); }
+  .booking-box { max-width:700px; margin:0 auto; background:var(--dark2); border-radius:15px; padding:35px; border:1px solid #333; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+  .deposit-info {
+    background:rgba(201,168,76,0.1); border:1px solid var(--gold);
+    border-radius:10px; padding:20px; margin:20px 0; font-size:0.9rem; line-height:1.7;
+  }
+  .deposit-info h4 { color:var(--gold); margin-bottom:8px; }
+  .submit-btn { width:100%; padding:16px; font-size:1.1rem; margin-top:10px; }
+  .success-box {
+    display:none; background:rgba(201,168,76,0.1); border:2px solid var(--gold);
+    border-radius:12px; padding:30px; text-align:center; margin-top:20px;
+  }
+  .success-box h3 { color:var(--gold); font-size:1.3rem; margin-bottom:10px; }
+  .success-box p { color:var(--text); margin-bottom:15px; line-height:1.7; }
+  .wa-confirm-btn {
+    display:inline-block; background:#25d366; color:#fff; padding:12px 25px;
+    border-radius:25px; text-decoration:none; font-weight:700; margin-top:10px;
+  }
+
+  /* CONTACT */
+  .contact { background:var(--dark2); }
+  .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:25px; max-width:800px; margin:0 auto; }
+  .contact-item { text-align:center; }
+  .contact-item .icon { font-size:2rem; margin-bottom:10px; }
+  .contact-item h4 { color:var(--gold); margin-bottom:5px; }
+  .contact-item a { color:var(--text); text-decoration:none; }
+  .contact-item a:hover { color:var(--gold); }
+
+  /* ADVANTAGES */
+  .advantages { background:var(--dark); }
+  .adv-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; max-width:900px; margin:0 auto; }
+  .adv-item { text-align:center; padding:25px 15px; }
+  .adv-item .icon { font-size:2.2rem; margin-bottom:12px; }
+  .adv-item h4 { color:var(--gold); margin-bottom:6px; }
+  .adv-item p { color:var(--text-dim); font-size:0.85rem; }
+
+  /* FOOTER */
+  footer {
+    background:#0d0d0d; border-top:1px solid var(--gold);
+    padding:30px 20px; text-align:center;
+  }
+  footer p { color:var(--text-dim); font-size:0.85rem; margin-bottom:5px; }
+  footer .gold { color:var(--gold); }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position:fixed; bottom:25px; right:25px; width:60px; height:60px;
+    background:#25d366; border-radius:50%; display:flex; align-items:center;
+    justify-content:center; font-size:1.8rem; text-decoration:none;
+    box-shadow:0 4px 20px rgba(37,211,102,0.5); z-index:999;
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow:0 4px 20px rgba(37,211,102,0.5); }
+    50% { box-shadow:0 4px 30px rgba(37,211,102,0.8); }
+  }
+
+  @media(max-width:768px) {
+    .nav-links { display:none; }
+    .hamburger { display:flex; }
+    .hero h1 { font-size:1.8rem; }
+    .form-row { grid-template-columns:1fr; }
+    .calc-box, .booking-box { padding:20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    珍惜（香港）有限公司
+    <span>Cherish Hong Kong Limited</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services" data-zh="服務" data-en="Services">服務</a></li>
+    <li><a href="#fleet" data-zh="車隊" data-en="Fleet">車隊</a></li>
+    <li><a href="#calculator" data-zh="即時估價" data-en="Estimate">即時估價</a></li>
+    <li><a href="#booking" data-zh="立即預訂" data-en="Book Now">立即預訂</a></li>
+    <li><a href="#contact" data-zh="聯絡我們" data-en="Contact">聯絡我們</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button class="lang-btn" onclick="toggleLang()">EN</button>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">服務 / Services</a>
+  <a href="#fleet" onclick="toggleMenu()">車隊 / Fleet</a>
+  <a href="#calculator" onclick="toggleMenu()">即時估價 / Estimate</a>
+  <a href="#booking" onclick="toggleMenu()">立即預訂 / Book Now</a>
+  <a href="#contact" onclick="toggleMenu()">聯絡我們 / Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🏆 政府牌照的士 · 專業旅遊接送</div>
+    <h1>珍惜（香港）有限公司</h1>
+    <h2>Cherish Hong Kong Limited</h2>
+    <p data-zh="政府認可的士7人車，最多6位乘客。機場接送、四大口岸通關、深圳市區直達。專業司機，粵語、英語、普通話服務。" data-en="Government-licensed 7-seater taxi, up to 6 passengers. Airport transfers, 4 border crossings, Shenzhen city transfers. Professional drivers with Cantonese, English & Mandarin service.">
+      政府認可的士7人車，最多6位乘客。機場接送、四大口岸通關、深圳市區直達。專業司機，粵語、英語、普通話服務。
+    </p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-gold" data-zh="立即預訂" data-en="Book Now">立即預訂</a>
+      <a href="#calculator" class="btn-outline" data-zh="即時估價" data-en="Get Estimate">即時估價</a>
+      <a href="tel:66611932" class="btn-outline">📞 6661 1932</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-title">
+    <h2 data-zh="我們的服務" data-en="Our Services">我們的服務</h2>
+    <div class="gold-line"></div>
+    <p data-zh="全香港任何地點 · 跨境接送 · 深圳市區" data-en="Any location in Hong Kong · Cross-border · Shenzhen city">全香港任何地點 · 跨境接送 · 深圳市區</p>
+  </div>
+  <div class="service-grid">
+    <div class="service-card">
+      <div class="service-icon">✈️</div>
+      <h3 data-zh="機場接送" data-en="Airport Transfer">機場接送</h3>
+      <div class="en">Airport Transfer</div>
+      <p data-zh="香港國際機場接送，可前往全港任何地區。準時可靠，讓您輕鬆出行。" data-en="Transfers to/from Hong Kong International Airport to any location in HK. Punctual and reliable service.">
+        香港國際機場接送，可前往全港任何地區。準時可靠，讓您輕鬆出行。
+      </p>
+      <span class="service-tag">7人車 · 最多6位乘客</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛂</div>
+      <h3 data-zh="陸路口岸接送" data-en="Border Transfer">陸路口岸接送</h3>
+      <div class="en">Border Transfer</div>
+      <p data-zh="香園圍、福田、深圳灣、皇崗四大口岸。全港任何地點出發，過關後可接駁深圳目的地。" data-en="Heung Yuen Wai, Futian, Shenzhen Bay & Huanggang. From anywhere in HK, with Shenzhen drop-off options.">
+        香園圍、福田、深圳灣、皇崗四大口岸。全港任何地點出發，過關後可接駁深圳目的地。
+      </p>
+      <span class="service-tag">4大口岸 · 深圳接駁</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏙️</div>
+      <h3 data-zh="深圳市區接送" data-en="Shenzhen Transfer">深圳市區接送</h3>
+      <div class="en">Shenzhen City Transfer</div>
+      <p data-zh="深圳市內各區直達服務，福田、羅湖、南山、龍華等。商務出行首選。" data-en="Direct transfers within Shenzhen city - Futian, Luohu, Nanshan, Longhua and more. Ideal for business travel.">
+        深圳市內各區直達服務，福田、羅湖、南山、龍華等。商務出行首選。
+      </p>
+      <span class="service-tag">深圳全區 · 商務首選</span>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section class="fleet" id="fleet">
+  <div class="section-title">
+    <h2 data-zh="我們的車隊" data-en="Our Fleet">我們的車隊</h2>
+    <div class="gold-line"></div>
+  </div>
+  <div style="text-align:center;margin-bottom:30px;">
+    <span class="fleet-badge">🚖 政府牌照的士 · 7人車 · 最多6位乘客（不含司機）</span>
+  </div>
+  <div class="fleet-grid">
+    <div class="fleet-item">
+      <div class="icon">👥</div>
+      <h4 data-zh="最多6位乘客" data-en="Up to 6 Passengers">最多6位乘客</h4>
+      <p data-zh="司機+最多6位乘客，適合家庭或商務團隊" data-en="Driver + up to 6 passengers, ideal for families or business groups">司機+最多6位乘客</p>
+    </div>
+    <div class="fleet-item">
+      <div class="icon">🏛️</div>
+      <h4 data-zh="政府認可牌照" data-en="Government Licensed">政府認可牌照</h4>
+      <p data-zh="持有效政府發出的的士牌照，安全有保障" data-en="Valid government-issued taxi license, guaranteed safety">持有效政府的士牌照</p>
+    </div>
+    <div class="fleet-item">
+      <div class="icon">🧳</div>
+      <h4 data-zh="充足行李空間" data-en="Ample Luggage Space">充足行李空間</h4>
+      <p data-zh="可容納大型行李箱，適合機場及旅遊接送" data-en="Accommodates large luggage, perfect for airport transfers">可容納大型行李箱</p>
+    </div>
+    <div class="fleet-item">
+      <div class="icon">❄️</div>
+      <h4 data-zh="全車冷氣" data-en="Full Air-Con">全車冷氣</h4>
+      <p data-zh="舒適冷氣環境，全程享受舒適旅程" data-en="Comfortable air-conditioned environment throughout">舒適冷氣環境</p>
+    </div>
+    <div class="fleet-item">
+      <div class="icon">🗣️</div>
+      <h4 data-zh="三語服務" data-en="Trilingual Service">三語服務</h4>
+      <p data-zh="粵語、英語、普通話，溝通無障礙" data-en="Cantonese, English & Mandarin, no language barrier">粵語・英語・普通話</p>
+    </div>
+    <div class="fleet-item">
+      <div class="icon">⏰</div>
+      <h4 data-zh="準時可靠" data-en="Punctual & Reliable">準時可靠</h4>
+      <p data-zh="準時接送，讓您安心出行" data-en="On-time pickups so you can travel with peace of mind">準時接送，安心出行</p>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section class="advantages" id="advantages">
+  <div class="section-title">
+    <h2 data-zh="為何選擇我們" data-en="Why Choose Us">為何選擇我們</h2>
+    <div class="gold-line"></div>
+  </div>
+  <div class="adv-grid">
+    <div class="adv-item"><div class="icon">🚖</div><h4 data-zh="政府認可牌照" data-en="Licensed">政府認可牌照</h4><p data-zh="正規的士，安全有保障" data-en="Licensed taxi, safety guaranteed">正規的士，安全有保障</p></div>
+    <div class="adv-item"><div class="icon">👨‍👩‍👧‍👦</div><h4 data-zh="一車6人同行" data-en="Group Travel">一車6人同行</h4><p data-zh="比普通的士更經濟" data-en="More economical than regular taxis">比普通的士更經濟</p></div>
+    <div class="adv-item"><div class="icon">🌏</div><h4 data-zh="跨境服務" data-en="Cross-border">跨境服務</h4><p data-zh="港深兩地無縫接送" data-en="Seamless HK-Shenzhen transfers">港深兩地無縫接送</p></div>
+    <div class="adv-item"><div class="icon">📱</div><h4 data-zh="線上預訂" data-en="Online Booking">線上預訂</h4><p data-zh="24小時網上預訂" data-en="24/7 online booking">24小時網上預訂</p></div>
+    <div class="adv-item"><div class="icon">💬</div><h4 data-zh="WhatsApp確認" data-en="WhatsApp Confirm">WhatsApp確認</h4><p data-zh="即時確認，安心出行" data-en="Instant confirmation via WhatsApp">即時確認，安心出行</p></div>
+    <div class="adv-item"><div class="icon">✨</div><h4 data-zh="專業服務" data-en="Professional">專業服務</h4><p data-zh="高端禮賓式旅遊接送" data-en="Premium concierge-level service">高端禮賓式旅遊接送</p></div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calculator" id="calculator">
+  <div class="section-title">
+    <h2 data-zh="即時費用估算" data-en="Instant Price Estimate">即時費用估算</h2>
+    <div class="gold-line"></div>
+    <p data-zh="根據香港市區的士現行收費（更新至2025年9月）" data-en="Based on 2026 Hong Kong taxi fare schedule">根據香港市區的士現行收費（更新至2025年9月）</p>
+  </div>
+  <div class="calc-box">
+    <div class="form-group">
+      <label data-zh="出發地（香港任何地點）" data-en="Pickup Location (anywhere in HK)">📍 出發地（香港任何地點）</label>
+      <input type="text" id="calcFrom" placeholder="輸入地址或地區，例如：旺角、沙田、屯門...">
+      <div class="quick-btns">
+        <button class="quick-btn" onclick="setCalcField('calcFrom','香港國際機場')">✈️ 機場</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','香港站')">🚇 香港站</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','九龍站')">🚇 九龍站</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','尖沙咀')">尖沙咀</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','旺角')">旺角</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','銅鑼灣')">銅鑼灣</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','中環')">中環</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','觀塘')">觀塘</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','將軍澳')">將軍澳</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','沙田')">沙田</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','荃灣')">荃灣</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','屯門')">屯門</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','元朗')">元朗</button>
+        <button class="quick-btn" onclick="setCalcField('calcFrom','上水')">上水</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label data-zh="目的地（香港任何地點或口岸）" data-en="Destination (anywhere in HK or border)">🏁 目的地（香港任何地點或口岸）</label>
+      <input type="text" id="calcTo" placeholder="輸入地址、地區或口岸..." oninput="checkSZField('calcTo','calcSZField')">
+      <div class="quick-btns">
+        <button class="quick-btn" onclick="setCalcField('calcTo','香港國際機場')">✈️ 機場</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','香港站')">🚇 香港站</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','九龍站')">🚇 九龍站</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','尖沙咀')">尖沙咀</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','旺角')">旺角</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','銅鑼灣')">銅鑼灣</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','中環')">中環</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','沙田')">沙田</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','屯門')">屯門</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','元朗')">元朗</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','香園圍口岸','border')">🛂 香園圍</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','福田口岸','border')">🛂 福田</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','深圳灣口岸','border')">🛂 深圳灣</button>
+        <button class="quick-btn" onclick="setCalcField('calcTo','皇崗口岸','border')">🛂 皇崗</button>
+      </div>
+    </div>
+    <div class="shenzhen-field" id="calcSZField">
+      <div class="form-group">
+        <label data-zh="🇨🇳 深圳目的地（過關後）" data-en="🇨🇳 Shenzhen Destination (after border)">🇨🇳 深圳目的地（過關後）</label>
+        <input type="text" id="calcSZDest" placeholder="例如：福田CBD、南山科技園、龍華、羅湖...">
+        <div class="quick-btns">
+          <button class="quick-btn" onclick="setCalcField('calcSZDest','福田CBD')">福田CBD</button>
+          <button class="quick-btn" onclick="setCalcField('calcSZDest','南山科技園')">南山科技園</button>
+          <button class="quick-btn" onclick="setCalcField('calcSZDest','羅湖')">羅湖</button>
+          <button class="quick-btn" onclick="setCalcField('calcSZDest','龍華')">龍華</button>
+          <button class="quick-btn" onclick="setCalcField('calcSZDest','寶安')">寶安</button>
+          <button class="quick-btn" onclick="setCalcField('calcSZDest','深圳北站')">深圳北站</button>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" id="autoDistGroup">
+      <label>📏 行車距離（自動計算）</label>
+      <div id="distStatus" style="background:var(--dark2);border:1px solid #444;border-radius:8px;padding:12px 15px;color:var(--text-dim);font-size:0.9rem;">
+        輸入出發地及目的地後，點擊「自動計算距離」
+      </div>
+      <button type="button" class="btn-outline" onclick="autoCalcDistance()" style="margin-top:10px;padding:10px 20px;font-size:0.9rem;" id="autoDistBtn">
+        🗺️ 自動計算距離
+      </button>
+      <input type="hidden" id="calcDistance" value="">
+    </div>
+    <div class="form-group">
+      <label data-zh="行李件數" data-en="Number of Luggage">🧳 行李件數</label>
+      <select id="calcLuggage">
+        <option value="0">0件</option>
+        <option value="1">1件</option>
+        <option value="2">2件</option>
+        <option value="3">3件</option>
+        <option value="4">4件</option>
+        <option value="5">5件</option>
+        <option value="6">6件或以上</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label data-zh="夜間服務（00:00–06:00）" data-en="Night Service (00:00–06:00)">🌙 夜間服務（00:00–06:00）</label>
+      <select id="calcNight">
+        <option value="0">否 / No</option>
+        <option value="1">是 / Yes (+20%)</option>
+      </select>
+    </div>
+    <button class="btn-gold calc-btn" onclick="calculateFare()">💰 計算估價 / Calculate</button>
+    <div class="result-box" id="calcResult">
+      <h3>💰 估價結果</h3>
+      <div id="resultRows"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="section-title">
+    <h2 data-zh="立即預訂" data-en="Book Now">立即預訂</h2>
+    <div class="gold-line"></div>
+    <p data-zh="填寫資料，我們會盡快WhatsApp確認" data-en="Fill in details, we'll confirm via WhatsApp shortly">填寫資料，我們會盡快WhatsApp確認</p>
+  </div>
+  <div class="booking-box">
+    <form id="bookingForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label data-zh="姓名 *" data-en="Name *">👤 姓名 *</label>
+          <input type="text" id="bName" required placeholder="您的姓名">
+        </div>
+        <div class="form-group">
+          <label data-zh="電話/WhatsApp *" data-en="Phone/WhatsApp *">📱 電話/WhatsApp *</label>
+          <input type="tel" id="bPhone" required placeholder="例如：91234567">
+        </div>
+      </div>
+      <div class="form-group">
+        <label data-zh="服務類型 *" data-en="Service Type *">🚖 服務類型 *</label>
+        <select id="bService" required onchange="checkSZField('bService','bSZField',true)">
+          <option value="">請選擇服務類型</option>
+          <option value="機場接送（前往機場）">✈️ 機場接送（前往機場）</option>
+          <option value="機場接送（離開機場）">✈️ 機場接送（離開機場）</option>
+          <option value="香園圍口岸接送">🛂 香園圍口岸接送</option>
+          <option value="福田口岸接送">🛂 福田口岸接送</option>
+          <option value="深圳灣口岸接送">🛂 深圳灣口岸接送</option>
+          <option value="皇崗口岸接送">🛂 皇崗口岸接送</option>
+          <option value="深圳市區接送">🏙️ 深圳市區接送</option>
+          <option value="香港市區點對點">🏙️ 香港市區點對點</option>
+        </select>
+      </div>
+      <div class="shenzhen-field" id="bSZField">
+        <div class="form-group">
+          <label>🇨🇳 深圳目的地（過關後）</label>
+          <input type="text" id="bSZDest" placeholder="例如：福田CBD、南山科技園、深圳北站...">
+          <div class="quick-btns">
+            <button type="button" class="quick-btn" onclick="setCalcField('bSZDest','福田CBD')">福田CBD</button>
+            <button type="button" class="quick-btn" onclick="setCalcField('bSZDest','南山科技園')">南山科技園</button>
+            <button type="button" class="quick-btn" onclick="setCalcField('bSZDest','羅湖')">羅湖</button>
+            <button type="button" class="quick-btn" onclick="setCalcField('bSZDest','龍華')">龍華</button>
+            <button type="button" class="quick-btn" onclick="setCalcField('bSZDest','深圳北站')">深圳北站</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label data-zh="出發地 *" data-en="Pickup Location *">📍 出發地 *</label>
+        <input type="text" id="bFrom" required placeholder="輸入香港任何地址或地區">
+        <div class="quick-btns">
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','香港國際機場')">✈️ 機場</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','香港站')">香港站</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','九龍站')">九龍站</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','尖沙咀')">尖沙咀</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','旺角')">旺角</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','銅鑼灣')">銅鑼灣</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','中環')">中環</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','沙田')">沙田</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','屯門')">屯門</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','元朗')">元朗</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bFrom','上水')">上水</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label data-zh="目的地 *" data-en="Destination *">🏁 目的地 *</label>
+        <input type="text" id="bTo" required placeholder="輸入香港任何地址、地區或口岸">
+        <div class="quick-btns">
+          <button type="button" class="quick-btn" onclick="setCalcField('bTo','香港國際機場')">✈️ 機場</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bTo','尖沙咀')">尖沙咀</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bTo','旺角')">旺角</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bTo','銅鑼灣')">銅鑼灣</button>
+          <button type="button" class="quick-btn" onclick="setCalcField('bTo','中環')">中環</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-zh="出發日期 *" data-en="Date *">📅 出發日期 *</label>
+          <input type="date" id="bDate" required>
+        </div>
+        <div class="form-group">
+          <label data-zh="出發時間 *" data-en="Time *">🕐 出發時間 *</label>
+          <input type="time" id="bTime" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-zh="乘客人數 *" data-en="Passengers *">👥 乘客人數 *</label>
+          <select id="bPax" required>
+            <option value="1">1人</option>
+            <option value="2">2人</option>
+            <option value="3">3人</option>
+            <option value="4">4人</option>
+            <option value="5">5人</option>
+            <option value="6">6人（最多）</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-zh="行李件數" data-en="Luggage">🧳 行李件數</label>
+          <select id="bLuggage">
+            <option value="0">0件</option>
+            <option value="1">1件</option>
+            <option value="2">2件</option>
+            <option value="3">3件</option>
+            <option value="4">4件</option>
+            <option value="5">5件</option>
+            <option value="6">6件或以上</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label data-zh="備註（可選）" data-en="Notes (optional)">📝 備註（可選）</label>
+        <textarea id="bNotes" rows="3" placeholder="特別要求、航班號碼、接機牌名稱等..."></textarea>
+      </div>
+      <div class="deposit-info">
+        <h4>💳 訂金付款方式</h4>
+        <p>每程訂金：<strong>HK$50</strong><br>
+        付款方式：<strong>PayMe</strong> 或 <strong>FPS 轉數快</strong><br>
+        收款號碼：<strong>6661 1932</strong><br>
+        付款後請將截圖透過 WhatsApp 發送給我們確認預訂。</p>
+      </div>
+      <button type="submit" class="btn-gold submit-btn">📤 提交預訂 / Submit Booking</button>
+    </form>
+    <div class="success-box" id="successBox">
+      <h3>✅ 預訂已提交！</h3>
+      <p>感謝您的預訂！請透過 <strong>PayMe / FPS</strong> 轉帳 <strong>HK$50</strong> 訂金至 <strong>6661 1932</strong>，並將付款截圖透過 WhatsApp 發送給我們以確認預訂。</p>
+      <a id="waConfirmBtn" href="#" class="wa-confirm-btn" target="_blank">💬 WhatsApp 發送預訂詳情</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-title">
+    <h2 data-zh="聯絡我們" data-en="Contact Us">聯絡我們</h2>
+    <div class="gold-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="icon">📞</div>
+      <h4 data-zh="電話 / WhatsApp" data-en="Phone / WhatsApp">電話 / WhatsApp</h4>
+      <a href="tel:66611932">6661 1932</a>
+    </div>
+    <div class="contact-item">
+      <div class="icon">📧</div>
+      <h4 data-zh="電郵" data-en="Email">電郵</h4>
+      <a href="/cdn-cgi/l/email-protection#e98b86868280878ea98a818c9b809a818182c78a8684"><span class="__cf_email__" data-cfemail="6b0904040002050c2b08030e19021803030045080406">[email&#160;protected]</span></a>
+    </div>
+    <div class="contact-item">
+      <div class="icon">🌐</div>
+      <h4 data-zh="網站" data-en="Website">網站</h4>
+      <a href="https://cherishhk.com">cherishhk.com</a>
+    </div>
+    <div class="contact-item">
+      <div class="icon">💬</div>
+      <h4>WhatsApp</h4>
+      <a href="https://wa.me/85266611932" target="_blank">立即聯絡</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="gold">珍惜（香港）有限公司 | Cherish Hong Kong Limited</p>
+  <p>© 2026 cherishhk.com · 政府牌照的士 · 專業旅遊接送</p>
+  <p style="margin-top:10px;font-size:0.75rem;">機場接送 · 口岸接送 · 深圳市區 · Airport Transfer · Border Transfer · Shenzhen</p>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/85266611932" class="wa-float" target="_blank" title="WhatsApp我們">💬</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Language toggle
+let isEn = false;
+function toggleLang() {
+  isEn = !isEn;
+  document.querySelector('.lang-btn').textContent = isEn ? '中' : 'EN';
+  document.querySelectorAll('[data-zh]').forEach(el => {
+    el.textContent = isEn ? el.dataset.en : el.dataset.zh;
+  });
+}
+
+// Mobile menu
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.style.display = m.style.display === 'block' ? 'none' : 'block';
+}
+
+// Set min date for booking
+document.getElementById('bDate').min = new Date().toISOString().split('T')[0];
+
+// Quick field setter
+function setCalcField(id, val, isBorder) {
+  document.getElementById(id).value = val;
+  if (id === 'calcTo') {
+    checkSZField('calcTo', 'calcSZField');
+  }
+  if (isBorder) {
+    document.getElementById('calcSZField').style.display = 'block';
+  }
+}
+
+// Check if border crossing selected → show SZ field
+const borders = ['香園圍','福田口岸','深圳灣','皇崗','口岸'];
+function checkSZField(inputId, fieldId, isSelect) {
+  const val = document.getElementById(inputId).value || '';
+  const isBorder = borders.some(b => val.includes(b)) || 
+    (isSelect && val.includes('口岸'));
+  document.getElementById(fieldId).style.display = isBorder ? 'block' : 'none';
+}
+
+// ─── AUTO DISTANCE: Hardcoded coords + Nominatim fallback + OSRM routing ───
+// Precise coordinates for HK border crossings & major landmarks
+const KNOWN_LOCATIONS = {
+  // 四大口岸 (HK side - correct coordinates)
+  '香園圍口岸':   { lat: 22.5747, lon: 114.1019, name: '香園圍口岸（Heung Yuen Wai）' },
+  '香園圍':       { lat: 22.5747, lon: 114.1019, name: '香園圍口岸（Heung Yuen Wai）' },
+  '福田口岸':     { lat: 22.5174, lon: 114.0573, name: '落馬洲管制站（福田口岸）' },
+  '落馬洲管制站': { lat: 22.5174, lon: 114.0573, name: '落馬洲管制站（福田口岸）' },
+  '深圳灣口岸':   { lat: 22.4103, lon: 113.9721, name: '深圳灣口岸（Shenzhen Bay Port）' },
+  '深圳灣':       { lat: 22.4103, lon: 113.9721, name: '深圳灣口岸（Shenzhen Bay Port）' },
+  '皇崗口岸':     { lat: 22.5200, lon: 114.0617, name: '皇崗口岸／落馬洲（Huanggang）' },
+  '皇崗':         { lat: 22.5200, lon: 114.0617, name: '皇崗口岸／落馬洲（Huanggang）' },
+  // 機場
+  '香港國際機場': { lat: 22.3080, lon: 113.9185, name: '香港國際機場（HKIA）' },
+  '機場':         { lat: 22.3080, lon: 113.9185, name: '香港國際機場（HKIA）' },
+  // 鐵路/渡輪
+  '香港站':       { lat: 22.2851, lon: 114.1584, name: '香港站（Hong Kong Station）' },
+  '九龍站':       { lat: 22.3048, lon: 114.1607, name: '九龍站（Kowloon Station）' },
+  '紅磡站':       { lat: 22.3031, lon: 114.1823, name: '紅磡站（Hung Hom Station）' },
+  // 常用地點
+  '尖沙咀':       { lat: 22.2988, lon: 114.1722, name: '尖沙咀（Tsim Sha Tsui）' },
+  '旺角':         { lat: 22.3193, lon: 114.1694, name: '旺角（Mong Kok）' },
+  '銅鑼灣':       { lat: 22.2827, lon: 114.1839, name: '銅鑼灣（Causeway Bay）' },
+  '中環':         { lat: 22.2819, lon: 114.1576, name: '中環（Central）' },
+  '灣仔':         { lat: 22.2791, lon: 114.1726, name: '灣仔（Wan Chai）' },
+  '觀塘':         { lat: 22.3124, lon: 114.2261, name: '觀塘（Kwun Tong）' },
+  '將軍澳':       { lat: 22.3073, lon: 114.2564, name: '將軍澳（Tseung Kwan O）' },
+  '沙田':         { lat: 22.3829, lon: 114.1871, name: '沙田（Sha Tin）' },
+  '荃灣':         { lat: 22.3714, lon: 114.1174, name: '荃灣（Tsuen Wan）' },
+  '屯門':         { lat: 22.3914, lon: 113.9765, name: '屯門（Tuen Mun）' },
+  '元朗':         { lat: 22.4428, lon: 114.0339, name: '元朗（Yuen Long）' },
+  '上水':         { lat: 22.5019, lon: 114.1282, name: '上水（Sheung Shui）' },
+  '大埔':         { lat: 22.4457, lon: 114.1645, name: '大埔（Tai Po）' },
+  '粉嶺':         { lat: 22.4943, lon: 114.1398, name: '粉嶺（Fanling）' },
+  '天水圍':       { lat: 22.4465, lon: 113.9998, name: '天水圍（Tin Shui Wai）' },
+  // 深圳目的地
+  '福田CBD':      { lat: 22.5431, lon: 114.0579, name: '福田CBD，深圳' },
+  '南山科技園':   { lat: 22.5406, lon: 113.9341, name: '南山科技園，深圳' },
+  '羅湖':         { lat: 22.5481, lon: 114.1122, name: '羅湖，深圳' },
+  '龍華':         { lat: 22.6333, lon: 114.0431, name: '龍華，深圳' },
+  '寶安':         { lat: 22.5554, lon: 113.8830, name: '寶安，深圳' },
+  '深圳北站':     { lat: 22.6082, lon: 114.0289, name: '深圳北站' },
+};
+
+function lookupKnownLocation(address) {
+  // Try exact and partial matches
+  for (const [key, coords] of Object.entries(KNOWN_LOCATIONS)) {
+    if (address.includes(key)) return coords;
+  }
+  return null;
+}
+
+async function geocode(address) {
+  // 1. Try hardcoded lookup first (accurate for HK border crossings)
+  const known = lookupKnownLocation(address);
+  if (known) return known;
+
+  // 2. Fallback to Nominatim for unknown addresses
+  const isSZ = address.includes('深圳') || address.includes('南山') || address.includes('龍華') || address.includes('寶安');
+  const query = (!isSZ && !address.includes('香港')) ? address + ', 香港' : address;
+  const url = 'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(query) + '&format=json&limit=1';
+  try {
+    const res = await fetch(url, { headers: { 'User-Agent': 'CherishHK-website/1.0' } });
+    const data = await res.json();
+    if (data && data.length > 0) {
+      return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), name: data[0].display_name };
+    }
+  } catch(e) {}
+  return null;
+}
+
+async function getRouteDistance(lat1, lon1, lat2, lon2) {
+  const url = `https://router.project-osrm.org/route/v1/driving/${lon1},${lat1};${lon2},${lat2}?overview=false`;
+  const res = await fetch(url);
+  const data = await res.json();
+  if (data.code === 'Ok' && data.routes && data.routes.length > 0) {
+    return data.routes[0].distance / 1000; // metres to km
+  }
+  return null;
+}
+
+async function autoCalcDistance() {
+  const from = document.getElementById('calcFrom').value.trim();
+  const to = document.getElementById('calcTo').value.trim();
+  if (!from || !to) { alert('請先輸入出發地及目的地'); return; }
+  const btn = document.getElementById('autoDistBtn');
+  const status = document.getElementById('distStatus');
+  btn.disabled = true;
+  btn.textContent = '⏳ 計算中...';
+  status.style.color = 'var(--gold)';
+  status.innerHTML = '🔍 正在查詢地址座標...';
+  try {
+    const [fromCoord, toCoord] = await Promise.all([geocode(from), geocode(to)]);
+    if (!fromCoord) {
+      status.style.color = '#ff6b6b';
+      status.innerHTML = `❌ 找不到出發地「${from}」，請輸入更詳細地址（例如：旺角彌敦道）`;
+      btn.disabled = false; btn.textContent = '🗺️ 重新計算'; return;
+    }
+    if (!toCoord) {
+      status.style.color = '#ff6b6b';
+      status.innerHTML = `❌ 找不到目的地「${to}」，請輸入更詳細地址`;
+      btn.disabled = false; btn.textContent = '🗺️ 重新計算'; return;
+    }
+    status.innerHTML = '🚗 正在計算行車距離...';
+    const distKm = await getRouteDistance(fromCoord.lat, fromCoord.lon, toCoord.lat, toCoord.lon);
+    if (!distKm) {
+      status.style.color = '#ff6b6b';
+      status.innerHTML = '❌ 無法計算路線，請稍後重試';
+      btn.disabled = false; btn.textContent = '🗺️ 重新計算'; return;
+    }
+    document.getElementById('calcDistance').value = distKm.toFixed(2);
+    status.style.color = '#4caf50';
+    const fromShort = fromCoord.name.split(',')[0];
+    const toShort = toCoord.name.split(',')[0];
+    status.innerHTML = `✅ <strong>行車距離：約 ${distKm.toFixed(1)} 公里</strong><br><small style="color:var(--text-dim)">📍 ${fromShort} → 🏁 ${toShort}</small>`;
+    btn.textContent = '🗺️ 重新計算';
+  } catch(err) {
+    status.style.color = '#ff6b6b';
+    status.innerHTML = '❌ 網絡錯誤，請稍後重試';
+    btn.textContent = '🗺️ 重新計算';
+  }
+  btn.disabled = false;
+}
+
+// Fare calculation - HK Urban Taxi rates (updated Sep 2025)
+function calculateFare() {
+  const from = document.getElementById('calcFrom').value;
+  const to = document.getElementById('calcTo').value;
+  const dist = parseFloat(document.getElementById('calcDistance').value);
+  const luggage = parseInt(document.getElementById('calcLuggage').value);
+  const night = parseInt(document.getElementById('calcNight').value);
+
+  if (!from || !to) { alert('請填寫出發地及目的地'); return; }
+  if (!dist || isNaN(dist)) { alert('請先點擊「自動計算距離」按鈕'); return; }
+
+  // HK Urban Taxi rates (effective Sep 2025)
+  const flagfall = 29.0;      // first 2km
+  const perUnit1 = 2.1;       // per 200m until meter reads $102.5
+  const perUnit2 = 1.4;       // per 200m after $102.5
+  const threshold = 102.5;    // fare threshold for rate change
+  const luggageFee = 6.0;
+  const phoneBooking = 5.0;
+
+  // Calculate base meter fare
+  let meter = flagfall;
+  if (dist > 2) {
+    const extraMetres = (dist - 2) * 1000;
+    const totalUnits = Math.ceil(extraMetres / 200);
+    for (let i = 0; i < totalUnits; i++) {
+      const rate = meter < threshold ? perUnit1 : perUnit2;
+      meter += rate;
+    }
+  }
+
+  const luggageTotal = luggage * luggageFee;
+  let subtotal = meter + luggageTotal + phoneBooking;
+  if (night) subtotal *= 1.2;
+
+  // ±10% range
+  const min = Math.round(subtotal * 0.9);
+  const max = Math.round(subtotal * 1.1);
+  const meterRounded = Math.round(meter * 10) / 10;
+
+  const rows = document.getElementById('resultRows');
+  rows.innerHTML = `
+    <div class="result-row"><span>🗺️ 行車距離</span><span>${dist.toFixed(1)} 公里</span></div>
+    <div class="result-row"><span>起錶（首2公里）</span><span>HK$29.0</span></div>
+    ${dist > 2 ? `<div class="result-row"><span>額外里程費</span><span>HK$${(meterRounded - 29).toFixed(1)}</span></div>` : ''}
+    ${luggage > 0 ? `<div class="result-row"><span>行李費（${luggage}件 × $6）</span><span>HK$${luggageTotal.toFixed(1)}</span></div>` : ''}
+    <div class="result-row"><span>電話預約費</span><span>HK$5.0</span></div>
+    ${night ? `<div class="result-row"><span>夜間附加費（+20%）</span><span>已計入</span></div>` : ''}
+    <div class="result-row"><span>💰 估計車費</span><span>HK$${min} – $${max}</span></div>
+    <div style="margin-top:15px;padding:12px;background:rgba(255,165,0,0.1);border:1px solid orange;border-radius:8px;font-size:0.8rem;color:#ffa500;line-height:1.6;">
+      ⚠️ <strong>重要聲明：</strong><br>
+      • 以上估價<strong>不包括隧道費用</strong>（過海隧道、大欖隧道等）<br>
+      • 實際收費以咪錶顯示為準<br>
+      • 估價僅供參考，可能因路況、等候時間而有所差異<br>
+      • 收費按香港市區的士現行錶價（更新至2025年9月）
+    </div>
+  `;
+  document.getElementById('calcResult').style.display = 'block';
+  document.getElementById('calcResult').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// Booking form submission
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('bName').value;
+  const phone = document.getElementById('bPhone').value;
+  const service = document.getElementById('bService').value;
+  const from = document.getElementById('bFrom').value;
+  const to = document.getElementById('bTo').value;
+  const szDest = document.getElementById('bSZDest').value;
+  const date = document.getElementById('bDate').value;
+  const time = document.getElementById('bTime').value;
+  const pax = document.getElementById('bPax').value;
+  const luggage = document.getElementById('bLuggage').value;
+  const notes = document.getElementById('bNotes').value;
+
+  // Build WhatsApp message
+  let msg = `*珍惜旅遊接送預訂*\n\n`;
+  msg += `👤 姓名：${name}\n`;
+  msg += `📱 電話：${phone}\n`;
+  msg += `🚖 服務：${service}\n`;
+  msg += `📍 出發地：${from}\n`;
+  msg += `🏁 目的地：${to}\n`;
+  if (szDest) msg += `🇨🇳 深圳目的地：${szDest}\n`;
+  msg += `📅 日期：${date}\n`;
+  msg += `🕐 時間：${time}\n`;
+  msg += `👥 乘客：${pax}人\n`;
+  msg += `🧳 行李：${luggage}件\n`;
+  if (notes) msg += `📝 備註：${notes}\n`;
+  msg += `\n💳 訂金：HK$50（PayMe/FPS 至 6661 1932）`;
+
+  const waUrl = `https://wa.me/85266611932?text=${encodeURIComponent(msg)}`;
+  document.getElementById('waConfirmBtn').href = waUrl;
+
+  document.getElementById('bookingForm').style.display = 'none';
+  document.getElementById('successBox').style.display = 'block';
+  window.scrollTo({top: document.getElementById('successBox').offsetTop - 80, behavior:'smooth'});
+});
+</script>
+</body>
+</html>
